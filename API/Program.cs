@@ -1,3 +1,4 @@
+
 using Application.Activities;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -17,7 +18,7 @@ builder.Services.AddCors(opt => {
     });
 });
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(List.Handler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(List.Handler).Assembly)); // RegisterServices.. method expects an Assembly object
 
 var app = builder.Build();
 
