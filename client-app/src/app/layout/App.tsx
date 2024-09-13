@@ -33,7 +33,11 @@ function App() {
   }
 
   function handleFormOpen(id?: string) {
-    id ? handleSelectActivity(id) : handleCancelSelectActivity();
+    if (id) {
+      handleSelectActivity(id);
+    } else {
+      handleCancelSelectActivity();
+    }
     setEditMode(true);
   }
 
@@ -42,12 +46,15 @@ function App() {
   }
 
   function handleCreateOrEditActivity(activity: Activity) {
-    activity.id
-      ? setActivities([
-          ...activities.filter((x) => x.id !== activity.id),
-          activity,
-        ])
-      : setActivities([...activities, { ...activity, id: uuid() }]);
+    if (activity.id) {
+      setActivities([
+        ...activities.filter((x) => x.id !== activity.id),
+        activity,
+      ]);
+    } else {
+      setActivities([...activities, { ...activity, id: uuid() }]);
+    }
+
     setEditMode(false);
     setSelectedActivity(activity);
   }
